@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>흔들리면서도 선다</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: white;
+      overflow: hidden;
+      font-family: 'Noto Sans KR', sans-serif;
+    }
+
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: black;
+      border-radius: 20%;
+      animation: blink 1.5s infinite ease-in-out alternate;
+    }
+
+    @keyframes blink {
+      0% { opacity: 0.2; }
+      100% { opacity: 1; }
+    }
+
+    .answer {
+      position: absolute;
+      color: black;
+      font-size: 1rem;
+      white-space: nowrap;
+      animation: float 15s linear infinite;
+      opacity: 0.85;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) translateX(0);
+        opacity: 0;
+      }
+      20% {
+        opacity: 1;
+      }
+      80% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh) translateX(50px);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<script>
+  for (let i = 0; i < 100; i++) {
+    const star = document.createElement('div');
+    star.classList.add('star');
+    star.style.top = `${Math.random() * 100}vh`;
+    star.style.left = `${Math.random() * 100}vw`;
+    star.style.animationDuration = `${1 + Math.random() * 2}s`;
+    document.body.appendChild(star);
+  }
+
+  const SHEET_URL = 'https://opensheet.elk.sh/1tJI1BSkSFvsYAhBSnwphcXTkSVg27BI40PBZz4WwqiU/Form%20Responses%201';
+
+  let answers = [];
+
+  function spawnAnswer(text) {
+    const div = document.createElement('div');
+    div.classList.add('answer');
+    div.textContent = text;
+    div.style.left = `${Math.random() * 80}vw`;
+    div.style.fontSize = `${0.8 + Math.random() * 1.2}rem`;
+    document.body.appendChild(div);
+    setTimeout(() => div.remove(), 15000);
+  }
+
+  fetch(SHEET_URL)
+    .then(res => res.json())
+    .then(data => {
+      console.log("✅ Loaded data:", data); 
+      answers = data.map(row => row["최근에 힘들었는데 극복한 적 있으신가요?"]).filter(Boolean);
+      let i = 0;
+      setInterval(() => {
+        if (answers.length > 0) {
+          spawnAnswer(answers[i % answers.length]);
+          i++;
+        }
+      }, 1000);
+    })
+    .catch(err => {
+      console.error("❌ Failed to fetch Google Sheet data:", err);
+    });
+</script>
+
+</body>
+</html>
