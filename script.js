@@ -24,7 +24,7 @@ for (let i = 0; i < 100; i++) {
   fetch(SHEET_URL)
     .then(res => res.json())
     .then(data => {
-      console.log("✅ Loaded data:", data); 
+      console.log(" Loaded data:", data); 
       answers = data.map(row => row["최근에 힘들었는데 극복한 적 있으신가요?"]).filter(Boolean);
       let i = 0;
       setInterval(() => {
@@ -35,5 +35,5 @@ for (let i = 0; i < 100; i++) {
       }, 1000);
     })
     .catch(err => {
-      console.error("❌ Failed to fetch Google Sheet data:", err);
+      console.error(" Failed to fetch Google Sheet data:", err);
     });
