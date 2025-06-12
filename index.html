@@ -8,7 +8,7 @@
     html, body {
       margin: 0;
       padding: 0;
-      background: white;
+      color: black;
       overflow: hidden;
       font-family: 'Noto Sans KR', sans-serif;
     }
@@ -31,25 +31,31 @@
       position: absolute;
       color: black;
       font-size: 1rem;
-      white-space: nowrap;
-      animation: float 15s linear infinite;
-      opacity: 0.85;
+      white-space: nowrap; 
+      animation: float 15s linear infinite; 
+      opacity: 0; 
+      padding: 8px 12px; 
+      background-color: rgba(255, 255, 255, 0.9); 
+      border: 1px solid #ddd; 
+      border-radius: 2px; 
+      z-index: 10; 
     }
+
 
     @keyframes float {
       0% {
-        transform: translateY(100vh) translateX(0);
+        transform: translateY(100vh);
         opacity: 0;
       }
-      20% {
+      10% {
         opacity: 1;
       }
       80% {
-        opacity: 1;
+        opacity: 1; 
       }
       100% {
-        transform: translateY(-10vh) translateX(50px);
-        opacity: 0;
+        transform: translateY(-10vh); 
+        opacity: 0; 
       }
     }
   </style>
@@ -66,7 +72,7 @@
     document.body.appendChild(star);
   }
 
-  const SHEET_URL = 'https://opensheet.elk.sh/1tJI1BSkSFvsYAhBSnwphcXTkSVg27BI40PBZz4WwqiU/Form%20Responses%201';
+  const SHEET_URL = 'https://opensheet.elk.sh/1Kp4nN8YwGsDgDEorEQbmPcTmkIMaImjaGKWpR7nR6qQ/Data';
 
   let answers = [];
 
