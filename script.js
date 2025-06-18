@@ -18,7 +18,7 @@ for (let i = 0; i < 100; i++) {
     div.style.left = `${Math.random() * 80}vw`;
     div.style.fontSize = `${0.8 + Math.random() * 1.2}rem`;
     document.body.appendChild(div);
-    setTimeout(() => div.remove(), 15000);
+    setTimeout(() => div.remove(), 150000);
   }
 
 setTimeout(() => {
