@@ -23,7 +23,7 @@ for (let i = 0; i < 100; i++) {
 
 setTimeout(() => {
 location.reload();
-}, 5000);
+}, 60000);
 
   fetch(SHEET_URL)
     .then(res => res.json())
