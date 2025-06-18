@@ -21,6 +21,10 @@ for (let i = 0; i < 100; i++) {
     setTimeout(() => div.remove(), 15000);
   }
 
+setTimeout(() => {
+location.reload();
+}, 5000);
+
   fetch(SHEET_URL)
     .then(res => res.json())
     .then(data => {
